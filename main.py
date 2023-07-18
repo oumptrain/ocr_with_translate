@@ -17,10 +17,31 @@ def screenshot():
     my_screenshot = pyautogui.screenshot()
     my_screenshot.save(r'{}'.format(file_path))
 
+
+def translate():
+    pass
+
 def text_recognition():
 
     new_window = Toplevel(root)
     new_window.geometry("1920x1080")
+
+    #menubar
+    menubar = Menu(new_window)
+    new_window.config(menu=menubar)
+
+    #menu
+    file_menu = Menu(menubar, tearoff=False)
+
+    file_menu.add_command(label='Multitran', command=translate)
+    file_menu.add_command(label='Cambridge', command=translate)
+    file_menu.add_command(label='Urban', command=translate)
+
+    menubar.add_cascade(
+        label="Перевод",
+        menu=file_menu
+    )
+
     screenshot()
     bg = tk.PhotoImage(file='image.png')
     text_file_name = "test.txt"
